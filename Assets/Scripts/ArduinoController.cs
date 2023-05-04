@@ -8,7 +8,7 @@ public class ArduinoController : MonoBehaviour
     void Start()
     {
         // Set up the serial port
-        serialPort = new SerialPort("COM9", 9600);
+        serialPort = new SerialPort("COM4", 9600);
         serialPort.Open();
     }
 
@@ -27,7 +27,7 @@ public class ArduinoController : MonoBehaviour
         serialPort.Close();
     }
 
-    void SendArduinoMessage()
+    public void SendArduinoMessage()
     {
         serialPort.Write("1");
     }
