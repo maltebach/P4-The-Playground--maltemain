@@ -83,11 +83,13 @@ namespace ViveTrackers
 				Color color = Random.ColorHSV();
 				viveTracker.debugTransform.Init(viveTracker.name, color, _mainCameraTransform);
 				viveTracker.ConnectedStatusChanged += _OnTrackerConnectedStatusChanged;
-				viveTracker.Calibrated += _OnTrackerCalibrated;				
+				viveTracker.Calibrated += _OnTrackerCalibrated;
 				//Attach a Sphere to the tracker.
 				GameObject renderer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                //Set tag on Sphere to "Tracker"
-                renderer.gameObject.tag = "Tracker";
+				SphereCollider sphereCollider = renderer.GetComponent<SphereCollider>();
+				sphereCollider.radius = 0.2f;
+				//Set tag on Sphere to "Tracker"
+				renderer.gameObject.tag = "Tracker";
 				//Attach Audio Listener to Sphere
 				AudioListener audioListener = renderer.AddComponent<AudioListener>();
                 //Attach a RigidBody to the sphere

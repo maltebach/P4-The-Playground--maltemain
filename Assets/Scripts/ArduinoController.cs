@@ -9,17 +9,17 @@ public class ArduinoController : MonoBehaviour
     {
         // Set up the serial port
         serialPort = new SerialPort("COM4", 9600);
-        serialPort.Open();
+        serialPort.Open();   
     }
 
-    void Update()
+   /*void Update()
     {
         // Send data to the Arduino when the input is received
-        if (Input.GetKey(KeyCode.Space))
+        if(Input.GetKey(KeyCode.Space))
         {
             serialPort.Write("1"); // Send "1" to the serial port
         }
-    }
+    }*/
 
     void OnApplicationQuit()
     {
@@ -27,8 +27,20 @@ public class ArduinoController : MonoBehaviour
         serialPort.Close();
     }
 
-    public void SendArduinoMessage()
+    public void SendMessage1()
     {
+        //serialPort.Open();
         serialPort.Write("1");
+        Debug.Log("message send");
+    }
+
+    public void SendMessage2()
+    {
+        serialPort.Write("2");
+    }
+
+    public void SendMessage3()
+    {
+        serialPort.Write("3");
     }
 }
