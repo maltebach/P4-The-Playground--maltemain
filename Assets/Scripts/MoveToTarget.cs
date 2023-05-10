@@ -22,6 +22,10 @@ public class MoveToTarget : MonoBehaviour
         if (rb.velocity.magnitude > 0)
         {
             float distance = Vector3.Distance(transform.position, targets[currentTargetIndex].position);
+            if (distance < stoppingDistance)
+            {
+                rb.velocity = Vector3.zero;
+            }
         }
     }
 
@@ -39,6 +43,7 @@ public class MoveToTarget : MonoBehaviour
 
     public void MoveToNextTarget()
     {
+        Debug.Log("Moving");
         currentTargetIndex = (currentTargetIndex + 1) % targets.Count;
         Vector3 direction = (targets[currentTargetIndex].position - transform.position).normalized;
         float forceMagnitude = speed * forceMultiplier;

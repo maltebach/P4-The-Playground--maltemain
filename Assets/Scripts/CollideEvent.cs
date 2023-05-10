@@ -8,28 +8,9 @@ public class CollideEvent : MonoBehaviour
     public bool antiLooper;
     public bool secondAntiLooper;
     public bool inRange;
-    public bool metroInRange;
-    public UnityEvent interactionAction;
-    public UnityEvent secondInteractionAction;
-    public UnityEvent thirdInteractionAction;
-    public AudioSource audiosource;
-    public AudioClip audioclip;
+    public UnityEvent onTrackerCollision;
+    public UnityEvent onChildCollision;
 
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (inRange)
-        {
-            if (antiLooper == false)
-            {
-                interactionAction.Invoke();
-                secondInteractionAction.Invoke();
-                thirdInteractionAction.Invoke();
-                antiLooper = true;
-            }
-        }
-    }*/
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -41,9 +22,21 @@ public class CollideEvent : MonoBehaviour
             {
                 if (!antiLooper)
                 {
-                    interactionAction.Invoke();
-                    secondInteractionAction.Invoke();
-                    thirdInteractionAction.Invoke();
+                    onTrackerCollision.Invoke();
+                    antiLooper = true;
+                }
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Child"))
+        {
+            inRange = true;
+            Debug.Log("You're in range, ma friend");
+            if (inRange)
+            {
+                if (!antiLooper)
+                {
+                    onChildCollision.Invoke();
                     antiLooper = true;
                 }
             }
@@ -58,7 +51,15 @@ public class CollideEvent : MonoBehaviour
             inRange = false;
 
         }
+
+        if (collision.gameObject.CompareTag("Child"))
+        {
+            antiLooper = false;
+            inRange = false;
+
+        }
     }
+
 
     public void SelfActivator()
     {

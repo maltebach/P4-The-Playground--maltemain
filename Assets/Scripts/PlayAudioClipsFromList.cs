@@ -12,20 +12,45 @@ public class PlayAudioClipsFromList : MonoBehaviour
     // Index of the current audio clip being played
     private int currentIndex = 0;
 
+    // List of indices at which to call the MoveToFirstTarget method
+    public List<int> indicesToCallMoveToFirstTarget;
+
 
     void Awake()
     {
         if (audioClipList.Count > 0)
         {
             // Get the first audio clip from the list
-            AudioClip audioClip = audioClipList[currentIndex];
+            AudioClip audioClip1 = audioClipList[0];
 
-            // Play the audio clip
-            audioSource.clip = audioClip;
+            // Play the first audio clip
+            audioSource.clip = audioClip1;
             audioSource.Play();
 
-            // Move to the next index in the list, or loop back to the beginning if we've reached the end
-            currentIndex = (currentIndex + 1) % audioClipList.Count;
+            // Wait for the first clip to finish playing
+            while (audioSource.isPlaying)
+            {
+                // Do nothing
+            }
+
+            // Get the second audio clip from the list
+            AudioClip audioClip2 = audioClipList[1];
+
+            // Play the second audio clip
+            audioSource.clip = audioClip2;
+            audioSource.Play();
+        }
+    }
+
+
+    void Update()
+    {
+        // Check if the current index is in the list of indices to call MoveToFirstTarget
+        if (indicesToCallMoveToFirstTarget.Contains(currentIndex) && !audioSource.isPlaying)
+        {
+            // Call the MoveToFirstTarget method from another script
+            MoveToTarget otherScript = GetComponent<MoveToTarget>();
+            otherScript.MoveToFirstTarget();
         }
     }
 
@@ -34,7 +59,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
     {
         if (audioClipList.Count > 0)
         {
-            // Get the first audio clip from the list
+            // Get the next audio clip from the list
             AudioClip audioClip = audioClipList[currentIndex];
 
             // Play the audio clip
