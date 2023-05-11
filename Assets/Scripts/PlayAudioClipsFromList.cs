@@ -15,6 +15,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
     // List of indices at which to call the MoveToFirstTarget method
     public List<int> indicesToCallMoveToFirstTarget;
 
+    public Coroutine Coroutine;
 
     void Awake()
     {
@@ -27,18 +28,9 @@ public class PlayAudioClipsFromList : MonoBehaviour
             audioSource.clip = audioClip1;
             audioSource.Play();
 
-            // Wait for the first clip to finish playing
-            while (audioSource.isPlaying)
-            {
-                // Do nothing
-            }
-
-            // Get the second audio clip from the list
-            AudioClip audioClip2 = audioClipList[1];
-
-            // Play the second audio clip
-            audioSource.clip = audioClip2;
-            audioSource.Play();
+            MoveToTarget moveToTarget = GetComponent<MoveToTarget>();
+            StartCoroutine(moveToTarget.MoveToFirstTargetCoroutine());
+            currentIndex++;
         }
     }
 
@@ -50,7 +42,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
         {
             // Call the MoveToFirstTarget method from another script
             MoveToTarget otherScript = GetComponent<MoveToTarget>();
-            otherScript.MoveToFirstTarget();
+            otherScript.MoveToNextTarget();
         }
     }
 

@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Activator : MonoBehaviour
 {
-    // The game object to activate when the audio clip finishes playing
+    // The game objects to activate when the audio clip finishes playing
     public List<GameObject> gameObjectsToActivate;
-    public List<GameObject> gameObjectsToDeactivate;
+    public List<GameObject> gameObjectsToActivateWithDelay;
 
     // The audio source component to play the audio clip
     public AudioSource audioSource;
 
     // The audio clip to play
     public AudioClip audioClip;
+
+    // Delay before activating game objects with delay (in seconds)
+    public float activationDelay = 0f;
 
     // Called when the object is first created
     void Start()
@@ -23,19 +26,20 @@ public class Activator : MonoBehaviour
         // Play the audio clip
         audioSource.Play();
 
-        // Call the Deactivate/ActivateGameObjects method after the audio clip has finished playing
+        // Call the ActivateGameObjects method after the audio clip has finished playing
         if (gameObjectsToActivate.Count > 0)
         {
-            Invoke("ActivateGameObject", audioClip.length);
+            Invoke(nameof(ActivateGameObject), audioClip.length);
         }
-        
-        if (gameObjectsToDeactivate.Count > 0)
+
+        // Call the ActivateGameObjectsWithDelay method after the audio clip has finished playing with a delay
+        if (gameObjectsToActivateWithDelay.Count > 0)
         {
-            Invoke("DeactivateGameObject", audioClip.length);
+            Invoke(nameof(ActivateGameObjectWithDelay), audioClip.length + activationDelay);
         }
     }
 
-    // Activates the game object
+    // Activates the game objects
     private void ActivateGameObject()
     {
         foreach (GameObject gameObject in gameObjectsToActivate)
@@ -44,12 +48,12 @@ public class Activator : MonoBehaviour
         }
     }
 
-    // Deactivates the game object
-    private void DeactivateGameObject()
+    // Activates the game objects with delay
+    private void ActivateGameObjectWithDelay()
     {
-        foreach (GameObject gameObject in gameObjectsToDeactivate)
+        foreach (GameObject gameObject in gameObjectsToActivateWithDelay)
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
     }
 }
