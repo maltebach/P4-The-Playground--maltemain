@@ -18,7 +18,6 @@ public class MoveToTarget : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
     }
 
     public void MoveToFirstTarget()
@@ -46,21 +45,28 @@ public class MoveToTarget : MonoBehaviour
         MoveToFirstTarget();
     }
 
-    void Update()
+    public IEnumerator MoveToNextTargetCoroutine()
+    {
+        yield return new WaitForSeconds(waitTime);
+        MoveToNextTarget();
+    }
+
+    void FixedUpdate()
     {
         if (isMoving)
         {
             Vector3 direction = (targetPosition - transform.position).normalized;
             float distance = Vector3.Distance(transform.position, targetPosition);
-            float moveDistance = speed * Time.deltaTime;
 
-            if (moveDistance > distance)
+            if (distance > stoppingDistance)
             {
-                moveDistance = distance;
+                rb.velocity = direction * speed;
             }
-
-            Vector3 newPosition = transform.position + direction * moveDistance;
-            rb.MovePosition(newPosition);
+            else
+            {
+                rb.velocity = Vector3.zero;
+                isMoving = false;
+            }
         }
     }
 }

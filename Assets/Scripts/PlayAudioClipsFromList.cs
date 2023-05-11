@@ -15,7 +15,6 @@ public class PlayAudioClipsFromList : MonoBehaviour
     // List of indices at which to call the MoveToFirstTarget method
     public List<int> indicesToCallMoveToFirstTarget;
 
-    public Coroutine Coroutine;
 
     void Awake()
     {
