@@ -13,7 +13,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
     private int currentIndex = 0;
 
     // List of indices at which to call the MoveToFirstTarget method
-    public List<int> indicesToCallMoveToFirstTarget;
+    public List<int> indicesToCallMoveToNextTarget;
 
 
     void Awake()
@@ -37,7 +37,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
     void Update()
     {
         // Check if the current index is in the list of indices to call MoveToFirstTarget
-        if (indicesToCallMoveToFirstTarget.Contains(currentIndex) && !audioSource.isPlaying)
+        if (indicesToCallMoveToNextTarget.Contains(currentIndex) && !audioSource.isPlaying)
         {
             // Call the MoveToFirstTarget method from another script
             MoveToTarget otherScript = GetComponent<MoveToTarget>();
