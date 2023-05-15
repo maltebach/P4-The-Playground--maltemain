@@ -86,20 +86,13 @@ namespace ViveTrackers
 				viveTracker.Calibrated += _OnTrackerCalibrated;
 				//Attach a Sphere to the tracker.
 				GameObject renderer = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-				SphereCollider sphereCollider = renderer.GetComponent<SphereCollider>();
-				sphereCollider.radius = 0.2f;
-				//Set tag on Sphere to "Tracker"
-				renderer.gameObject.tag = "Tracker";
 				//Attach Audio Listener to Sphere
 				AudioListener audioListener = renderer.AddComponent<AudioListener>();
                 //Attach a RigidBody to the sphere
-                Rigidbody rb = renderer.AddComponent<Rigidbody>();
-				rb.useGravity = false;
-				rb.isKinematic = true;
                 renderer.transform.parent = viveTracker.transform;
 				renderer.transform.localPosition = Vector3.zero;
 				renderer.transform.localRotation = Quaternion.identity;
-				renderer.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+				renderer.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 				renderer.GetComponent<Renderer>().material.color = color;
 			}
 		}
