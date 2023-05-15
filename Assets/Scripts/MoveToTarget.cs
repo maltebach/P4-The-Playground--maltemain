@@ -39,6 +39,7 @@ public class MoveToTarget : MonoBehaviour
         isMoving = true;
     }
 
+
     public IEnumerator MoveToFirstTargetCoroutine()
     {
         yield return new WaitForSeconds(waitTime);
@@ -49,6 +50,11 @@ public class MoveToTarget : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         MoveToNextTarget();
+    }
+
+    public void NextTargetCoroutineWrapper()
+    {
+        StartCoroutine(MoveToNextTargetCoroutine());
     }
 
     void FixedUpdate()

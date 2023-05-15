@@ -29,6 +29,7 @@ public class PlayAudioClipsFromList : MonoBehaviour
 
             MoveToTarget moveToTarget = GetComponent<MoveToTarget>();
             StartCoroutine(moveToTarget.MoveToFirstTargetCoroutine());
+
             currentIndex++;
         }
     }
