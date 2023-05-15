@@ -54,6 +54,7 @@ public class MoveToTarget : MonoBehaviour
 
     public void NextTargetCoroutineWrapper()
     {
+        waitTime = 6f;
         StartCoroutine(MoveToNextTargetCoroutine());
     }
 
