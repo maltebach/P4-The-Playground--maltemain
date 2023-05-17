@@ -302,13 +302,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 945e5f7a34dd60044adf0118fee38742, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 1
   SpatializePostEffects: 0
-  Priority: 100
+  Priority: 150
   DopplerLevel: 1
   MinDistance: 0.5
   MaxDistance: 5
@@ -1436,13 +1436,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 89ccc847a22ac414d873c6729c52ad50, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 1
   SpatializePostEffects: 0
-  Priority: 100
+  Priority: 150
   DopplerLevel: 1
   MinDistance: 0.5
   MaxDistance: 5
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   - {fileID: 1044546161}
   gameObjectsToDeactivateWithDelay: []
   audioSource: {fileID: 363870547}
-  audioClip: {fileID: 8300000, guid: 7f71644d726e7438e9567888f2445b24, type: 3}
+  audioClip: {fileID: 8300000, guid: 86bc9fd0034fe8a4489233b8e27a0b85, type: 3}
   activationDelay: 4
   deactivationDelay: 0
   audioClipDelay: 4
